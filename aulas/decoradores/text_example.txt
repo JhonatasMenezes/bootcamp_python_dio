@@ -1,0 +1,6 @@
+Olá!
+
+Esse arquivo vai servir de exemplo para testar nosso iterador.
+
+Mais uma linha aqui.
+E outra aqui.
