@@ -12,7 +12,7 @@ class Records:
 
     
     def add_transaction(self, transaction: Transaction):
-        date_now = datetime.now().strftime("%d-%m-%Y, %H:%M:%S")
+        date_now = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         self.__transactions.append(
             {
                 "date_time": date_now,
@@ -32,7 +32,7 @@ class Records:
         date_now = datetime.now().date()
         transactions = []
         for transaction in self.transactions:
-            transaction_date = datetime.strftime(transaction["date_time"], "%d-%m-%Y %H:%M:%S").date()
+            transaction_date = datetime.strptime(transaction["date_time"], "%d-%m-%Y %H:%M:%S").date()
             if date_now == transaction_date:
                 transactions.append(transaction)
         

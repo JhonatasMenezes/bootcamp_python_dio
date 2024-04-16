@@ -18,6 +18,7 @@ class Customer:
         if len(account.records.day_transactions()) >= 10:
             print("\n Você excedeu o número de transações permitidas para hoje!")
             return
+        
         transaction.record_transaction(account)
 
 

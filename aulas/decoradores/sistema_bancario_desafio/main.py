@@ -4,7 +4,8 @@ from objects.add_money import AddMoney
 from objects.get_money import GetMoney
 from objects.physical_person import PhysicalPerson
 from objects.current_account import CurrentAccount
-from objects.records import Records
+from objects.account import AccountIterator
+
 
 transaction_logs = []
 
@@ -38,12 +39,11 @@ def transaction_log(func,):
         date_now = datetime.now().strftime("%d-%m-%Y, %H:%M:%S")
         try:
             func(*args, **kwargs)
-            response = {"date_time": date_now, "transaction_type": func.__name__, "status": "success"}
+            print( f'{date_now}: {func.__name__.upper()}, Success!')
         except Exception as exception:
-            response = {"date_time": date_now, "transaction_type": func.__name__, "status": exception}
+            print( f'{date_now}: {func.__name__.upper()}, {exception}')
 
-        transaction_logs.append(response)
-    
+
     return wrapper
 
 
@@ -101,18 +101,19 @@ def show_records(customers, transaction_type=None):
         return
 
     print("\n================ EXTRATO ================")
-    transactions = account.records.transactions
-
     extract = ""
-    if not transactions:
+    transaction_existis = False
+    for transaction in account.records.generate_report():
+        transaction_existis = True
+        extract += f"\n{transaction["date_time"]}\n{transaction['transaction_type']}:\n\tR$ {transaction['value']:.2f}"
+    
+    if not transaction_existis:
         extract = "Não foram realizadas movimentações."
-    else:
-        for transaction in transactions:
-            extract += f"\n{transaction['transaction_type']}:\n\tR$ {transaction['value']:.2f}"
 
     print(extract)
     print(f"\nSaldo:\n\tR$ {account.balance:.2f}")
     print("==========================================")
+    sleep(5)
 
 
 @transaction_log
@@ -156,12 +157,11 @@ def add_account(account_id, customers, accounts):
 
 
 def list_accounts(accounts):
-    for account in accounts:
+    for account in AccountIterator(accounts):
         print("=" * 100)
         print(account)
     
     sleep(4)
-
 
 
 def main():

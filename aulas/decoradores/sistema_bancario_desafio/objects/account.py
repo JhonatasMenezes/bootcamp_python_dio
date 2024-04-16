@@ -76,3 +76,27 @@ class Account(AccountInterface):
             sleep(2)
             return False
         
+
+class AccountIterator:
+    def __init__(self, accounts: Account) -> None:
+        self.accounts = accounts
+        self.index = 0
+
+
+    def __iter__(self):
+        return self
+
+
+    def __next__(self):
+        try:
+            account = self.accounts[self.index]
+            return f"""
+            Agência:\t{account.agency}
+            Número:\t\t{account.account_id}
+            Titular:\t{account.customer.name}
+            Saldo:\t\tR$ {account.balance:.2f}
+        """
+        except IndexError:
+            raise StopIteration
+        finally:
+            self.index += 1
