@@ -1,0 +1,4 @@
+[16-04-2024, 18:34:04] Função 'ADD_CUSTOMER' executada com argumentos ([<PhysicalPerson: ('1')>],) e {}.Retornou True
+[16-04-2024, 18:34:08] Função 'ADD_ACCOUNT' executada com argumentos (1, [<PhysicalPerson: ('1')>], [<CurrentAccount: ('0001' '1' 'Jhonatas')>]) e {}.Retornou True
+[16-04-2024, 18:34:13] Função 'DEPOSIT' executada com argumentos ([<PhysicalPerson: ('1')>],) e {}.Retornou True
+[16-04-2024, 18:35:17] Função 'ADD_CUSTOMER' executada com argumentos ([<PhysicalPerson: ('2')>],) e {}.Retornou True
