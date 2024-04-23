@@ -1,33 +1,38 @@
 import sqlite3
-from connection import conn
+from connection import conn, transactions_manager
 
 cursor = conn.cursor()
 cursor.row_factory = sqlite3.Row
 
 
-def create_table(connection, cursor):
+@transactions_manager
+def create_table(cursor):
     cursor.execute("CREATE TABLE clientes (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(100), email VARCHAR(150))")
-    connection.commit()
 
 
-def insert_one(connection, cursor, nome, email):
+
+@transactions_manager
+def insert_one(cursor, nome, email):
     data = (nome, email)
     cursor.execute("INSERT INTO clientes (nome, email) VALUES (?, ?);", (data))
-    connection.commit()
 
 
-def insert_many(connection, cursor, dados):
+
+@transactions_manager
+def insert_many(cursor, dados):
     cursor.executemany("INSERT INTO clientes (nome, email) values (?, ?)", dados)
-    connection.commit()
 
 
-def update_one(connection, cursor, nome, email, id):
+
+@transactions_manager
+def update_one(cursor, nome, email, id):
     data = (nome, email, id)
     cursor.execute("UPDATE clientes SET nome=?, email=? WHERE id=?;", (data))
-    connection.commit()
 
 
-def delete_one(connection, cursor, id):
+
+@transactions_manager
+def delete_one(cursor, id):
     data = (id,)
     cursor.execute("DELETE FROM clientes WHERE id=?;", (data))
-    connection.commit()
+
