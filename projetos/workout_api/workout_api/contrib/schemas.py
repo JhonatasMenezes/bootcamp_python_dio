@@ -4,7 +4,7 @@ from datetime import datetime
 
 class BaseSchema(BaseModel):
     class Config:
-        extra = 'forbid'
+        extra='forbid'
         from_attributes = True
 
 class OutMixin(BaseModel):
