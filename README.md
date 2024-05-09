@@ -2,10 +2,15 @@
 
 ### Temas abordados:
 - Conceitos e prática do básico ao avançado na linguagem Python.
+  
 - Conceitos e prática básica de Bancos Relacionais (MySQL).
+  
 - Conceitos e prática básica de Bancos Não-Relacionais (MongoDB).
+  
 - Conceitos e prática básica de Machine Learning.
+  
 - Conceitos e prática básica de Inteligências Artificiais Generativas (não é a mesma coisa que ML, agora sei bem).
+  
 
 ### Desafios de Projeto concluídos:
 - Desenvolvimento de Sistemas Bancários simples com Python: [Repositório](https://github.com/JhonatasMenezes/bootcamp_python_dio/tree/main/projetos/sistema_bancario_v3)
